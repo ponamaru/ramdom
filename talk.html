@@ -1,0 +1,45 @@
+<html>
+<div id="t1"></div>
+<script src="dataS.js"></script>
+<script>
+// 各文字の次に最も多い文字を取得
+function mostProbableNextChar(text) {
+  let counts = {};
+
+  // 出現回数をカウント
+  for (let i = 0; i < text.length - 1; i++) {
+    let current = text[i];
+    let next = text[i + 1];
+
+    if (!counts[current]) counts[current] = {};
+    if (!counts[current][next]) counts[current][next] = 0;
+    counts[current][next]++;
+  }
+
+  // 各文字について最頻の次文字を決定
+  let result = {};
+  for (let char in counts) {
+    let nextChars = counts[char];
+    let best = Object.keys(nextChars).reduce((a, b) =>
+      nextChars[a] >= nextChars[b] ? a : b
+    );
+    result[char] = best;
+  }
+
+  return result;
+}
+
+let res = mostProbableNextChar(data);
+console.log(res);
+
+
+// 表示用に整形
+let output = "";
+for (let key in res) {
+  output += res[key];
+}
+
+document.getElementById("t1").innerText = output;
+
+</script>
+</html>
