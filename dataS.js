@@ -1,5 +1,7 @@
 
 var data = `
+私はあなたに教えることができます。
+
 朝露が草の上で輝いている。
 
 空に浮かぶ雲がゆっくりと流れる。
@@ -1575,8 +1577,8 @@ OK！
 async function getWikipediaText(query) {
   const url = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(query)}`;
   const res = await fetch(url);
-  const data = await res.json();
-  data += data.extract; // 記事の要約テキストを取得
+  const data1 = await res.json();
+  data += data1.extract; 
 }
 
 getWikipediaText("Artificial Intelligence");
